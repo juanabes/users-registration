@@ -41,5 +41,3 @@ class Database:
             print(f"An error occurred while try connecting with the database: {str(e)}")
             return False
     # End of create_tables
-
-    
