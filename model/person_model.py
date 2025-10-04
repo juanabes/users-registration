@@ -25,7 +25,7 @@ class PersonModel:
                 return False
     # End of add_person
     
-    def read_person(self, identity_document: str) -> tuple | None:
+    def get_person(self, identity_document: str) -> tuple | None:
         """Read the person data from the database by identity document"""
         with self.db.get_connection() as connection:
             try:
@@ -38,7 +38,7 @@ class PersonModel:
                 return None
     # End of read_person
     
-    def read_all_persons(self):
+    def get_all_persons(self):
         """Read all person data from the database"""
         with self.db.get_connection() as connection:
             try:

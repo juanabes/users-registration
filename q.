@@ -1,0 +1,35 @@
+[33mcommit 565e15703ee5ece5d31e4b792e48cb68bb187a72[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mperson/model[m[33m)[m
+Author: Juan Parra <juanparracarrera@outlook.com>
+Date:   Sat Oct 4 14:44:26 2025 -0400
+
+    feat: person-controller
+
+[33mcommit d1a69aaaf822ff6a5f268dc8a3b462392c69ce3e[m[33m ([m[1;31morigin/person/model[m[33m, [m[1;32mperson/controller[m[33m)[m
+Author: Juan Parra <juanparracarrera@outlook.com>
+Date:   Thu Oct 2 21:39:33 2025 -0400
+
+    feat: person-model
+
+[33mcommit cdef479c133e90c2d4f8f3527d663aeb30a5dedd[m
+Author: Juan Parra <juanparracarrera@outlook.com>
+Date:   Thu Oct 2 07:34:05 2025 -0400
+
+    feat: database
+
+[33mcommit a69d838045ad1c0aee6a4fa0a916cf016bb35adc[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Juan Parra <juanparracarrera@outlook.com>
+Date:   Thu Oct 2 06:42:36 2025 -0400
+
+    feat: architecture
+
+[33mcommit e416755013a3dc1438988317c0c881a5eaf7a1c7[m[33m ([m[1;31morigin/person/architecture/model-view-controller[m[33m)[m
+Author: Juan Parra <juanparracarrera@outlook.com>
+Date:   Thu Oct 2 06:18:52 2025 -0400
+
+    feat: architecture
+
+[33mcommit 064556a585a801f04d0f6b5e7343043c59a4c5bb[m
+Author: Juan Parra <juanparracarrera@outlook.com>
+Date:   Thu Oct 2 06:11:55 2025 -0400
+
+    Initial commit
