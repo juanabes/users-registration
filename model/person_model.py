@@ -3,11 +3,11 @@ from sqlite3 import IntegrityError, Error
 
 class PersonModel:
     """Create sentencies SQL to manipulate person data"""
-    def __init__(self, db: Database):
-        self.db = db
+    def __init__(self):
+        self.db = Database()
         
-    def add_person(self, person_data:tuple) -> bool:
-        """Add a new person into the database"""
+    def create_person(self, person_data:tuple) -> bool:
+        """Create a new person into the database. Expects: (identity_document, name, surname, address, phone_number)"""
         with self.db.get_connection() as connection:
             try:
                 cursor = connection.cursor()
@@ -25,7 +25,7 @@ class PersonModel:
                 return False
     # End of add_person
     
-    def get_person(self, identity_document: str) -> tuple | None:
+    def read_person(self, identity_document: str) -> tuple | None:
         """Read the person data from the database by identity document"""
         with self.db.get_connection() as connection:
             try:
@@ -38,7 +38,7 @@ class PersonModel:
                 return None
     # End of read_person
     
-    def get_all_persons(self):
+    def read_all_persons(self) -> list[tuple]:
         """Read all person data from the database"""
         with self.db.get_connection() as connection:
             try:

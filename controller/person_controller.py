@@ -10,14 +10,11 @@ class PersonController:
         self.view = view
         self.view.set_command_callbacks(
             create_command=self.handle_create_person,
-            create_command=self.handle_read_person,
-            create_command=self.handle_update_person,
-            create_command=self.handle_delete_person
+            read_command=self.handle_read_person,
+            update_command=self.handle_update_person,
+            delete_command=self.handle_delete_person
         )
         
-        # Get inputs from the view
-        self.person_data_dict = self.view.get_inputs()
-    
     def handle_create_person(self):
         """
         Handle the "Create" click event.
@@ -26,25 +23,27 @@ class PersonController:
         3. Updates the View with the result.
         """
         
-        identity_document = self.person_data_dict["identity_document"]
+        person_data_dict = self.view.get_inputs()
+        
+        identity_document = person_data_dict["identity_document"]
         if not identity_document:
             self.view.display_message("Error: Identity Document is required", "orange")
             return
         
         person_data_tuple = (
             identity_document,
-            self.person_data_dict["name"],
-            self.person_data_dict["surname"],
-            self.person_data_dict["address"],
-            self.person_data_dict["phone_number"]
+            person_data_dict["name"],
+            person_data_dict["surname"],
+            person_data_dict["address"],
+            person_data_dict["phone_number"]
         )
         
         # Interact with model
-        success = self.model.add_person(person_data_tuple)
+        success = self.model.create_person(person_data_tuple)
         
         # Update view
         if success:
-            self.view.display_message("Person created succesfully!", "219ebc")
+            self.view.display_message("Person created succesfully!", "#219ebc")
             self.view.clear_inputs_after_save()
         else:
             self.view.display_message("Error: couldn't create person (ID already exist)", "red")
@@ -57,14 +56,15 @@ class PersonController:
         2. Model search Identity Document if doesn't exist return a message
         3. If Identity Document exist in database return all data 
         """
+        person_data_dict = self.view.get_inputs()
         
-        identity_document = self.person_data_dict["identity_document"]
+        identity_document = person_data_dict["identity_document"]
         if not identity_document:
             self.view.display_message("Error: Identity Document is required to search person data", "orange")
             return 
         
         # Interact with model
-        person_data = self.model.get_person(identity_document)
+        person_data = self.model.read_person(identity_document)
         
         # Update view
         if person_data:
@@ -83,17 +83,20 @@ class PersonController:
         4. Get all data from entry fields to be updated
         5. Update the database
         """
-        identity_document = self.person_data_dict["identity_document"]
+        person_data_dict = self.view.get_inputs()
+        
+        identity_document = person_data_dict["identity_document"]
         if not identity_document:
-            self.view.display_message("Error: Identity Document is required to update person data", "red")
+            print("Check if ID exists or database is available")
+            self.view.display_message("Error: Identity Document is required to update person data", "orange")
             return
 
         person_data_tuple = (
-            identity_document,
-            self.person_data_dict["name"],
-            self.person_data_dict["surname"],
-            self.person_data_dict["address"],
-            self.person_data_dict["phone_number"]
+            person_data_dict["name"],
+            person_data_dict["surname"],
+            person_data_dict["address"],
+            person_data_dict["phone_number"],
+            identity_document
         )
         
         success = self.model.update_person(person_data_tuple)
@@ -113,9 +116,11 @@ class PersonController:
         4. Delete all person data
         5. Update the database
         """
-        identity_document = self.person_data_dict["identity_document"]
+        person_data_dict = self.view.get_inputs()
+        
+        identity_document = person_data_dict["identity_document"]
         if not identity_document:
-            self.view.display_message("Error: Identity Document is required to delete person data")
+            self.view.display_message("Error: Identity Document is required to delete person data", "orange")
             return
         
         success = self.model.delete_person(identity_document)
@@ -127,4 +132,3 @@ class PersonController:
             self.view.display_message("Person ID no exists", "red")
     # End of handle_delete_person
       
-        

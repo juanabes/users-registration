@@ -28,7 +28,7 @@ class Database:
                 cursor = conexion.cursor()
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS person(
-                        id VARCHAR(11) PRIMARY KEY,
+                        identity_document VARCHAR(11) PRIMARY KEY,
                         name VARCHAR(20) NOT NULL,
                         surname VARCHAR(20) NOT NULL,
                         address VARCHAR(100),
